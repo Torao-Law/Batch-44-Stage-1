@@ -1,0 +1,10 @@
+<h1>Halo</h1>
+<!-- <img src="assets/images/people-man.jpg" alt="people"/> -->
+<p style="color: blue; font-weight: bold; font-size: 42px; background-color: red;">Hallo Batch 44 Belajar HTML</p>
+<p>Hallo Batch 44 - copy</p>
+<a href="https://dumbways.id" style="background-color: blue;">Click Here</a>
+<button>Hai 1</button>
+<button>Hai 2</button>
+<button>Hai 3</button>
+<button>Hai 3</button>
+<button>Hai 3</button>

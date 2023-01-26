@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Contact Me</title>
+        <link href="assets/css/navbar.css" rel="stylesheet" />
+        <link href="assets/css/all.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav>
+            <div class="left-side">
+            <img src="assets/images/logo.png" id="image" />
+            <ul>
+                <li>
+                <a href="" class="active">Home</a>
+                </li>
+                <li>
+                <a href="">Blog</a>
+                </li>
+            </ul>
+            </div>
+    
+            <div class="right-side">
+            <a href="contactme.html"> Contact Me</a>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+  
+        <div style="width: 350px; margin: 0 auto; margin-top: 150px;">
+            <form>
+                <div>
+                    <label for="name" style="font-size: 18px; font-weight: bold;">Name</label>
+                    <input type="text" id="name" style="width: 100%; box-sizing: border-box; padding: 8px; margin-top: 5px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #c4c4c4"/>
+                </div>
+                
+                <div>
+                    <label for="email" style="font-size: 18px; font-weight: bold;">Email</label>
+                    <input type="text" id="email" style="width: 100%; box-sizing: border-box; padding: 8px; margin-top: 5px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #c4c4c4"/>
+                </div>
+                
+                <div>
+                    <label for="phone" style="font-size: 18px; font-weight: bold;">Phone Number</label>
+                    <input type="text" id="phone" style="width: 100%; box-sizing: border-box; padding: 8px; margin-top: 5px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #c4c4c4"/>
+                </div>
+                
+                <div>
+                    <label for="subject" style="font-size: 18px; font-weight: bold;">Subject</label>
+                    <select id="subject"  style="width: 100%; box-sizing: border-box; padding: 8px; margin-top: 5px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #c4c4c4">
+                        <option>Frontend</option>
+                        <option>Backend</option>
+                        <option>Fullstack</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="description" style="font-size: 18px; font-weight: bold;">Description</label>
+                    <textarea id="description" style="width: 100%; box-sizing: border-box; padding: 8px; margin-top: 5px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #c4c4c4; height: 100px; resize: none"></textarea>
+                </div>
+                <div>
+                    <button type="button" onclick="getData()" style="background-color: orangered; padding: 8px 30px; border: none; border-radius: 10px; font-size: 17px; color: white; cursor: pointer">Submit</button>
+                </div>
+            </form>
+        </div>
+        <script src="assets/js/script.js"></script>
+    </body>
+</html>

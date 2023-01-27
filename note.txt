@@ -1,0 +1,192 @@
+<h1>Halo</h1>
+<!-- <img src="assets/images/people-man.jpg" alt="people"/> -->
+<p style="color: blue; font-weight: bold; font-size: 42px; background-color: red;">Hallo Batch 44 Belajar HTML</p>
+<p>Hallo Batch 44 - copy</p>
+<a href="https://dumbways.id" style="background-color: blue;">Click Here</a>
+<button>Hai 1</button>
+<button>Hai 2</button>
+<button>Hai 3</button>
+<button>Hai 3</button>
+<button>Hai 3</button>
+
+
+
+day3
+//variable
+// const sayHello = "Hello World"
+// console.log(sayHello)
+
+// let sayGoodBye = "Ohh good bye"
+// console.log(sayGoodBye)
+
+// const -> nilai yang tidak bisa di ubah
+// let -> nilai yang bisa di ubah
+
+
+
+
+// type data
+// "string", number (int), boolean (true or false), undifined, null
+// object, array
+// contoh
+// const myName = "Dandi Saputra"
+// let myAge = 16
+// let isMarried = false
+
+// console.log(myName)
+// console.log(typeof myName)
+// console.log(myAge)
+// console.log(typeof myAge)
+// console.log(isMarried)
+// console.log(typeof isMarried)
+
+// type data primitive and non primitive
+// primitive
+// "string", number (int), boolean (true or false), undifined, null
+
+// non primitive
+// object, array
+
+
+
+
+// conditional
+// if(kondisi) {
+//     statement
+// }
+
+// const myAme = 'Dandi Saputra'
+// const myName = "Dandi Saputra"
+// let myAge = 16
+// let isMarried = false
+
+// if(myAge === 20) {
+//     console.log('Oke kamu sudah dewasa')
+// } else if (myAge < 20) {
+//         console.log('kamu anak kecil')
+//     } else {
+//     console.log('Your Age ' + myAge)
+// }
+
+// console.log('Your Age ' + myAge)
+// console.log(`Hallo umur saya saat ini  ${myAge}`)
+
+
+
+// perulanganan
+// console.log("Hello World")
+// console.log("Hello World")
+// console.log("Hello World")
+// console.log("Hello World")
+// console.log("Hello World")
+// for(inisilisasi, kondisi, aksi) {
+//     statment
+// }
+
+// const sayHello = "Hello World"
+// for(i = 1; i<=5; i++){
+//     console.log(sayHello + i)
+// }
+
+
+
+// function
+// declaration function
+// function increment() {
+//     statement
+// }
+
+// //expression function
+// const nama = function increment() {
+//     statement
+// }
+
+// //arrow function
+// const hello = () => {
+//     statement
+// }
+
+// function increment(x, y) {
+//     console.log(x)
+//     console.log(y)
+//     console.log(x + y)
+// }
+
+// increment(3, 4)
+
+
+
+
+
+Day 4
+//console.log("Success")
+
+// Object
+// const namaObject = {
+//     property: values,
+//     property: values,
+//     property: values,
+//     property: values,
+//     property: values,
+// }
+
+// OBJCECT
+// const myBio = {
+//     myName: "Donny Erlambang",
+//     myAge: 24,
+//     isMarried: false
+// }
+
+// alert(`Selamat Pagi mas ${myBio.myName}`)
+// console.log(myBio["isMarried"])
+
+
+// ARRAY
+// let namaArray = [index1, index2]
+// let myBio = ["Dandi Saputra", 24, false]
+// console.table(myBio)
+// console.log(`Umur saya saat ini ${myBio[1]}`)
+
+
+// ARRAY of OBJECT
+// let nameArray = [
+//     {
+//         property: value,
+//         property: value,
+//         property: value,
+//     },
+//     {
+//         property: value,
+//         property: value,
+//         property: value,
+//     },
+//     {
+//         property: value,
+//         property: value,
+//         property: value,
+//     },
+// ] 
+
+
+// let batch44 = [
+//     {
+//         name: "Donni Erlambang",
+//         age: 16,
+//         isMarried: true
+//     },
+//     {
+//         name: "Nima Tuljanah",
+//         age: 20,
+//         isMarried: false,
+//         skill: ["Javascript", "Golang", "PHP", "Kotlin"]
+//     },
+//     {
+//         name: "Affan Ghofar",
+//         age: 32,
+//         isMarried: true,
+//         jumlahAnak: 10
+//     },
+// ]
+
+
+// console.table(batch44)

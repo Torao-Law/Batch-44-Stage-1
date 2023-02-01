@@ -1,0 +1,23 @@
+doni
+-> bahasa server side, memiliki compiler, di buat oleh c.
+
+abi
+-> bisa microservice, carbage collector, pointer, mirip c bukan dari c kalau ga salah dari google 2009.
+
+giantyo
+-> static = harus deklarasi type variable.
+
+bagus
+-> perpaduan c dan java, diciptakan oleh tim google
+
+findo
+-> dependency 
+
+bilqis
+-> dependency
+
+emilia
+-> fitur text editor untuk develop go
+
+rahmadani
+-> untuk mengelompokan code

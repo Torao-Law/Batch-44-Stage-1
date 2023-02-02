@@ -1,0 +1,7 @@
+deklarasi variable go
+var name string
+	name = "dandi"
+
+	var car = "BMW"
+
+	drinks := "coca-cola"

@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+section {
+    display: flex;
+    width: 80%;
+}
+
+.left-content {
+    flex: 30%;
+}
+
+.right-content {
+    flex: 70%;
+    margin-left: 50px;
+}
+
+.container-skill {
+    display: flex;
+    margin-top: 25px;
+}
+
+.container-sosmed{
+    margin-top: 25px;
+}
+
+.container-sosmed i {
+    font-size: 30px;
+    margin-right: 20px;
+}

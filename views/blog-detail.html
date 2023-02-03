@@ -1,14 +1,14 @@
 <html>
   <head>
     <title>Creating Blog Page - detail</title>
-    <link rel="stylesheet" href="assets/css/blog.css" />
+    <link rel="stylesheet" href="/public/css/blog.css" />
   </head>
   <body>
     <!-- NavBar -->
     <nav>
       <div class="left-side">
         <a href="/">
-          <img src="assets/images/logo.png" alt="logo" />
+          <img src="/public/images/logo.png" alt="logo" />
         </a>
         <ul>
           <li>
@@ -27,18 +27,11 @@
     <!-- Blog -->
     <div class="blog-detail">
       <div class="blog-detail-container">
-        <h1>Pasar Coding di Indonesia Dinilai Masih Menjanjikan</h1>
-        <div class="author">12 Jul 2021 22:30 WIB | Ichsan Emrald Alamsyah</div>
-        <img src="assets/images/blog-img-detail.png" alt="detail" />
+        <h1>{{.Blog.Title}}</h1>
+        <div class="author">{{.Blog.Post_date}} | {{.Blog.Author}}</div>
+        <img src="/public/images/blog-img-detail.png" alt="detail" />
         <p>
-          REPUBLIKA.CO.ID, JAKARTA -- Ketimpangan sumber daya manusia (SDM) di
-          sektor digital masih menjadi isu yang belum terpecahkan. Berdasarkan
-          penelitian ManpowerGroup, ketimpangan SDM global, termasuk Indonesia,
-          meningkat dua kali lipat dalam satu dekade terakhir. Khusus di sektor
-          teknologi yang berkembang pesat, menurut Kemendikbudristek, Indonesia
-          kekurangan sembilan juta pekerja teknologi hingga tahun 2030. Hal itu
-          berarti Indonesia memerlukan sekitar 600 ribu SDM digital yang
-          memasuki pasar setiap tahunnya.
+          {{.Blog.Content}}
         </p>
       </div>
     </div>

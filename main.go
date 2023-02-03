@@ -16,6 +16,10 @@ var Data = map[string]interface{}{
 	"IsLogin": true,
 }
 
+// type Home interface{
+// 	helloworld(int, model) (string, error)
+// }
+
 type Blog struct {
 	Title     string
 	Post_date string
@@ -25,26 +29,8 @@ type Blog struct {
 
 var Blogs = []Blog{
 	{
-		Title:     "Pasar Coding di Indonesia Dinilai Masih Menjanjikan 0",
-		Post_date: "12 Jul 2021 22:30 WIB",
-		Author:    "Dandi Saputra",
-		Content:   "Halo ini testing dan ini merupakan dummy data",
-	},
-	{
-		Title:     "Pasar Coding di Indonesia Dinilai Masih Menjanjikan 1",
-		Post_date: "12 Jul 2021 22:30 WIB",
-		Author:    "Dandi Saputra",
-		Content:   "Halo ini testing dan ini merupakan dummy data",
-	},
-	{
-		Title:     "Pasar Coding di Indonesia Dinilai Masih Menjanjikan 2",
-		Post_date: "12 Jul 2021 22:30 WIB",
-		Author:    "Dandi Saputra",
-		Content:   "Halo ini testing dan ini merupakan dummy data",
-	},
-	{
-		Title:     "Pasar Coding di Indonesia Dinilai Masih Menjanjikan 3",
-		Post_date: "12 Jul 2021 22:30 WIB",
+		Title:     "Pasar Coding di Indonesia Dinilai Masih Menjanjikan",
+		Post_date: time.Now().String(),
 		Author:    "Dandi Saputra",
 		Content:   "Halo ini testing dan ini merupakan dummy data",
 	},
@@ -148,9 +134,22 @@ func blogDetail(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	BlogDetail := Blog{}
+
+	for i, data := range Blogs {
+		if i == id {
+			BlogDetail = Blog{
+				Title:     data.Title,
+				Post_date: data.Post_date,
+				Author:    data.Author,
+				Content:   data.Content,
+			}
+		}
+	}
+
 	resp := map[string]interface{}{
 		"Data": Data,
-		"Id":   id,
+		"Blog": BlogDetail,
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -183,9 +182,9 @@ func deleteBlog(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset=utf-8")
 
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
+	fmt.Println(id)
 
 	Blogs = append(Blogs[:id], Blogs[id+1:]...)
 
-	fmt.Println(id)
 	http.Redirect(w, r, "/blog", http.StatusMovedPermanently)
 }

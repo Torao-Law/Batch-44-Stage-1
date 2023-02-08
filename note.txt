@@ -18,3 +18,8 @@ INSERT INTO public.tb_user(name, email, password)
 	VALUES ('Doni', 'doniyangselalutersakiti@mail.com', 'apaaja');
 	
 DELETE FROM public.tb_user WHERE id=3;
+
+
+Query
+QueryRow => 1 baris data sesuai kondisi yang di kirimkan
+Exec => mengeksekusi untuk menambah/update/delete data

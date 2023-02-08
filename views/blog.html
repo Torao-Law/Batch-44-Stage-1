@@ -70,10 +70,10 @@
             <div class="blog-content">
               <div class="btn-group">
                 <a href="" class="btn-edit">Edit Post</a>
-                <a href="/delete-blog/{{$index}}" class="btn-post">DELETE</a>
+                <a href="/delete-blog/{{$data.Id}}" class="btn-post">DELETE</a>
               </div>
               <h1>
-                <a href="/blog-detail/{{$index}}" target="_blank"
+                <a href="/blog-detail/{{$data.Id}}" target="_blank"
                   >{{$data.Title}}</a
                 >
               </h1>

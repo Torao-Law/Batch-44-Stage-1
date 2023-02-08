@@ -111,7 +111,7 @@ func blog(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		each.Author = "Dandi Saputra"
+		each.Author = "Dandi Gans"
 		each.Format_date = each.Post_date.Format("Jan 21, 2000")
 
 		result = append(result, each)
@@ -146,8 +146,7 @@ func getContact(w http.ResponseWriter, r *http.Request) {
 // function handling blog-detail.html with query string
 func blogDetail(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset=utf-8")
-
-	// id, _ := strconv.Atoi(mux.Vars(r)["id"])
+	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
 	// parsing template html
 	var tmpl, err = template.ParseFiles("views/blog-detail.html")
@@ -159,17 +158,15 @@ func blogDetail(w http.ResponseWriter, r *http.Request) {
 	}
 
 	BlogDetail := Blog{}
+	err = connection.Conn.QueryRow(context.Background(), "SELECT id, title, image, content, post_date FROM tb_blog WHERE id=$1", id).Scan(&BlogDetail.Id, &BlogDetail.Title, &BlogDetail.Image, &BlogDetail.Content, &BlogDetail.Post_date)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Message : " + err.Error()))
+		return
+	}
 
-	// for i, data := range Blogs {
-	// 	if i == id {
-	// 		BlogDetail = Blog{
-	// 			Title:     data.Title,
-	// 			Post_date: data.Post_date,
-	// 			Author:    data.Author,
-	// 			Content:   data.Content,
-	// 		}
-	// 	}
-	// }
+	BlogDetail.Author = "Dandi Gans"
+	BlogDetail.Format_date = BlogDetail.Post_date.Format("19 August 2000")
 
 	resp := map[string]interface{}{
 		"Data": Data,
@@ -186,18 +183,19 @@ func addBlog(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	// title := r.PostForm.Get("title")
-	// content := r.PostForm.Get("content")
+	title := r.PostForm.Get("title")
+	content := r.PostForm.Get("content")
 
-	// // var newBlog = Blog{
-	// // 	Title:     title,
-	// // 	Post_date: time.Now().String(),
-	// // 	Author:    "Dandi Saputra",
-	// // 	Content:   content,
-	// // }
+	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_blog(title, content, image) VALUES ($1, $2, 'image.png')", title, content)
 
-	// Blogs = append(Blogs, newBlog)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Message : " + err.Error()))
+		return
+	}
 
+	fmt.Println(title)
+	fmt.Println(content)
 	http.Redirect(w, r, "/blog", http.StatusMovedPermanently)
 }
 
@@ -206,9 +204,13 @@ func deleteBlog(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset=utf-8")
 
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
-	fmt.Println(id)
 
-	// Blogs = append(Blogs[:id], Blogs[id+1:]...)
+	_, err := connection.Conn.Exec(context.Background(), "DELETE FROM tb_blog WHERE id=$1", id)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Message : " + err.Error()))
+		return
+	}
 
 	http.Redirect(w, r, "/blog", http.StatusMovedPermanently)
 }

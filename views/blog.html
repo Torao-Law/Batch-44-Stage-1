@@ -3,6 +3,8 @@
     <title>{{.Title.Title}}</title>
     <link rel="stylesheet" href="/public/css/blog.css" />
     <link rel="stylesheet" href="/public/css/navbar.css" />
+    <link href="/public/css/style.css" rel="stylesheet">
+    <link href="/public/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
@@ -21,10 +23,28 @@
           </li>
         </ul>
       </div>
-      <div class="right-side">
-        <a href="/contact-me"> Contact Me </a>
-      </div>
-    </nav>
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {{if IsLogin}}
+          <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Halo, {{Username}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-orange" aria-current="page" href="/logout">Log out</a>
+          </li>
+          {{else}}
+            <li class="nav-item">
+                <a class="nav-link text-orange" aria-current="page" href="/register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/login">Login</a>
+            </li>
+          {{end}}
+          <div class="right-side">
+              <a href="/contact-me"> Contact Me</a>
+          </div>
+        </ul>
+      </nav>
 
     <!-- Blog -->
     <!-- Form -->

@@ -26,17 +26,31 @@
             <li>
               <a href="/blog">Add Blog</a>
             </li>
-            {{else}}
-            <li>
-              <a href="/blog">Login</a>
-            </li>
           {{end}}
         </ul>
       </div>
 
-      <div class="right-side">
-        <a href="/contact-me"> Contact Me</a>
-      </div>
+      
+        <ul>
+          {{if .IsLogin}}
+            <li>
+                <a href="#">Hallo, {{.Username}}</a>
+            </li>
+            <li>
+              <a href="/logout">Log out</a>
+            </li>
+          {{else}}
+            <li>
+                <a href="/register">Register</a>
+            </li>
+            <li>
+                <a class="nav-link active" href="/login">Login</a>
+            </li>
+          {{end}}
+            <div class="right-side">
+              <a href="/contact-me"> Contact Me</a>
+            </div>
+        </ul>
     </nav>
     <!-- End Navbar -->
 

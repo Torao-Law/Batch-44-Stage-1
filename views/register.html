@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <title>Register Page</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+  <link href="/public/css/navbar.css" rel="stylesheet" />
+  <link href="/public/css/all.css" rel="stylesheet" />
+  <link href="/public/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+        <div class="left-side">
+          <a href="/">
+            <img src="/public/images/logo.png" alt="logo" />
+          </a>
+          <ul>
+            <li>
+              <a href="/" class="active">Home</a>
+            </li>
+            {{if .IsLogin}}
+              <li>
+                <a href="/blog">Add Blog</a>
+              </li>
+              {{else}}
+              <li>
+                <a href="/blog">Login</a>
+              </li>
+            {{end}}
+          </ul>
+        </div>
+  
+        <div class="right-side">
+          <a href="/contact-me"> Contact Me</a>
+        </div>
+      </nav>
+
+    <div class="containter">
+        <div
+      class="container-form-blog d-flex align-items-center justify-content-center">
+      <div class="container-form">
+        <p class="h2 text-center mb-4">Register</p>
+        <form action="/register" method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              name="name"
+              type="text"
+              class="form-control"
+              id="name"
+              aria-describedby="emailHelp"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              name="email"
+              type="email"
+              class="form-control"
+              id="email"
+              aria-describedby="emailHelp"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              name="password"
+              type="password"
+              class="form-control"
+              id="password"
+              aria-describedby="emailHelp"
+            />
+          </div>
+
+          <div class="d-flex justify-content-start">
+            <button type="submit" class="btn btn-orange text-white mt-5">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

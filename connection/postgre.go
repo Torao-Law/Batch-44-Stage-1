@@ -28,3 +28,6 @@ func DatabaseConnect() {
 // host = host postgres
 // port = port postgres
 // database = database postgres
+
+var a int = 10
+var b *int = &a

@@ -1,119 +1,102 @@
 <html>
-  <head>
-    <title>{{.Title}}</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <link href="/public/css/navbar.css" rel="stylesheet" />
-    <link href="/public/css/all.css" rel="stylesheet" />
-  </head>
+    <head>
+        <title>{{.Title}}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <!-- <link href="/public/css/all.css" rel="stylesheet"/> -->
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+              <a class="navbar-brand" href="/">
+                <img src="public/images/logo.png" id="image" />
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link fw-semibold active text-danger" aria-current="page" href="/">Home</a>
+                  </li>
+                  <li class="nav-item ms-3">
+                    <a class="nav-link" href="/blog">Add Blog</a>
+                  </li>
+                </ul>
 
-  <body>
-    <!-- Navbar -->
-    <nav>
-      <div class="left-side">
-        <a href="/">
-          <img src="/public/images/logo.png" alt="logo" />
-        </a>
-        <ul>
-          <li>
-            <a href="/" class="active">Home</a>
-          </li>
-          {{if .IsLogin}}
-            <li>
-              <a href="/blog">Add Blog</a>
-            </li>
-          {{end}}
-        </ul>
-      </div>
-
-      
-        <ul>
-          {{if .IsLogin}}
-            <li>
-                <a href="#">Hallo, {{.Username}}</a>
-            </li>
-            <li>
-              <a href="/logout">Log out</a>
-            </li>
-          {{else}}
-            <li>
-                <a href="/register">Register</a>
-            </li>
-            <li>
-                <a class="nav-link active" href="/login">Login</a>
-            </li>
-          {{end}}
-            <div class="right-side">
-              <a href="/contact-me"> Contact Me</a>
+                <div class="d-flex justify-content-end">
+                    <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+                        {{if .IsLogin}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Halo, {{.Username}}</a>
+                            </li>
+                            <li class="nav-item ms-3">
+                                <a class="nav-link" href="/login">Logout</a>
+                            </li>
+                        {{else}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Register</a>
+                            </li>
+                            <li class="nav-item ms-3">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                        {{end}}
+                    </ul>
+                    <a class="btn btn-danger btn-submit ms-5" href="/contact-me">Contact Me</a>
+                </div>
+              </div>
             </div>
-        </ul>
-    </nav>
-    <!-- End Navbar -->
+        </nav>
 
-    <div class="container">
-      <section>
-        <div class="left-content">
-          <div
-            style="
-              border: 1px solid #000040;
-              width: 350px;
-              padding: 15px;
-              box-shadow: 0 0 30px #dbdbdb;
-            ">
-            <div class="image">
-              <img
-                src="/public/images/people-man.jpg"
-                alt="man"
-                style="width: 100%; border-radius: 10px" />
+        <div class="container d-flex mt-5">
+            <!-- card -->
+            <div class="card p-3" style="max-width: 22rem; flex: 40%;">
+                <img src="/public/images/people-man.jpg" class="card-img-top rounded" alt="man">
+                <div class="my-3">
+                  <h3 style="margin: 0;">Agung Kurniawan</h3>
+                  <p style="margin: 0;">Halo Saya Agung, Saya Seorang Web Developer Handal maseee</p>
+                </div>
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                          <th scope="col">Project Name</th>
+                          <th scope="col">Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dumbways Mobile App</td>
+                            <td>2022</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <h1>Agung Kurniawan</h1>
-            <p style="color: grey">
-              Halo Saya Agung, Saya Seorang Web Developer Handal maseee
-            </p>
 
-            <!--  -->
-            <table
-              style="
-                border: 1px solid #000040;
-                width: 100%;
-                text-align: center;
-                border-collapse: collapse;
-              ">
-              <tr>
-                <th style="border: 1px solid #000040">Project Name</th>
-                <th style="border: 1px solid #000040">Year</th>
-              </tr>
-              <tr>
-                <td style="border: 1px solid #000040">Dumbways Mobile App</td>
-                <td style="border: 1px solid #000040">2023</td>
-              </tr>
-              <tr>
-                <td style="border: 1px solid #000040">Dumbways Web App</td>
-                <td style="border: 1px solid #000040">2022</td>
-              </tr>
-            </table>
-          </div>
-        </div>
+            <!-- content -->
+            <div class="ms-5" style="flex: 70%;">
+                <h1 >What i do</h1>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text
+                    ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not
+                    only five centuries, but also the leap into electronic typesetting,
+                    remaining essentially unchanged.
+                </p>
 
-        <div class="right-content">
-          <h1 >What i do</h1>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
-          </p>
-
-          <div class="container-skill">
+            <div class="d-flex mt-4">
+                <div class="item-skill">
+                    <img src="/public/images/logo.png" />
+                <h5>Frontend Developer</h5>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+                    temporibus.
+                </p>
+            </div>
             <div class="item-skill">
               <img src="/public/images/logo.png" />
-              <h3>Frontend Developer</h3>
+              <h5>Frontend Developer</h5>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
                 temporibus.
@@ -121,15 +104,7 @@
             </div>
             <div class="item-skill">
               <img src="/public/images/logo.png" />
-              <h3>Frontend Developer</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-                temporibus.
-              </p>
-            </div>
-            <div class="item-skill">
-              <img src="/public/images/logo.png" />
-              <h3>Frontend Developer</h3>
+              <h5>Frontend Developer</h5>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
                 temporibus.
@@ -138,7 +113,7 @@
           </div>
 
           <div class="container-sosmed">
-            <h1>Found Me On</h1>
+            <h3>Found Me On</h3>
             <div class="list-sosmed">
               <i class="fa-brands fa-facebook-f"></i>
               <i class="fa-brands fa-instagram"></i>
@@ -146,7 +121,7 @@
             </div>
           </div>
         </div>
-      </section>
-    </div>
-  </body>
+            </div>
+        </div>
+    </body>
 </html>

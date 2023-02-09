@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -15,9 +16,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-var Data = map[string]interface{}{
-	"Title":   "Personal Web",
-	"IsLogin": false,
+type MetaData struct {
+	Title     string
+	IsLogin   bool
+	Username  string
+	FlashData string
+}
+
+var Data = MetaData{
+	Title: "Personal Web",
 }
 
 type User struct {
@@ -79,11 +86,24 @@ func home(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "SESSION_ID")
 
 	if session.Values["IsLogin"] != true {
-		Data["IsLogin"] = false
+		Data.IsLogin = false
 	} else {
-		Data["IsLogin"] = session.Values["IsLogin"].(bool)
-		Data["Username"] = session.Values["Name"].(string)
+		Data.IsLogin = session.Values["IsLogin"].(bool)
+		Data.Username = session.Values["Name"].(string)
 	}
+
+	fm := session.Flashes("Message")
+
+	var flashes []string
+
+	if len(fm) > 0 {
+		session.Save(r, w)
+
+		for _, fl := range fm {
+			flashes = append(flashes, fl.(string))
+		}
+	}
+	Data.FlashData = strings.Join(flashes, "")
 
 	w.WriteHeader(http.StatusOK)
 	tmpl.Execute(w, Data)
@@ -106,10 +126,10 @@ func blog(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "SESSION_ID")
 
 	if session.Values["IsLogin"] != true {
-		Data["IsLogin"] = false
+		Data.IsLogin = false
 	} else {
-		Data["IsLogin"] = session.Values["IsLogin"].(bool)
-		Data["Username"] = session.Values["Name"].(string)
+		Data.IsLogin = session.Values["IsLogin"].(bool)
+		Data.Username = session.Values["Name"].(string)
 	}
 
 	rows, _ := connection.Conn.Query(context.Background(), "SELECT id, title, image, content, post_date FROM public.tb_blog;")
@@ -126,12 +146,6 @@ func blog(w http.ResponseWriter, r *http.Request) {
 
 		each.Author = "Dandi Gans"
 		each.Format_date = each.Post_date.Format("Jan 21, 2000")
-
-		// if session.Values["IsLogin"] != true {
-		// 	each.IsLogin = false
-		// } else {
-		// 	each.IsLogin = session.Values["IsLogin"].(bool)
-		// }
 
 		result = append(result, each)
 	}

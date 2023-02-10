@@ -2,6 +2,7 @@ package main
 
 import (
 	"Personal-Web/connection"
+	"Personal-Web/middleware"
 	"context"
 	"fmt"
 	"html/template"
@@ -42,6 +43,7 @@ type Blog struct {
 	Image       string
 	Post_date   time.Time
 	Format_date string
+	IsLogin     bool
 }
 
 func main() {
@@ -51,11 +53,12 @@ func main() {
 	connection.DatabaseConnect()
 	// create static folder.
 	router.PathPrefix("/public").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
+	router.PathPrefix("/uploads").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("./uploads"))))
 
 	// create handling URl
 	router.HandleFunc("/", home).Methods("GET")
 	router.HandleFunc("/blog", blog).Methods("GET")
-	router.HandleFunc("/add-blog", addBlog).Methods("POST")
+	router.HandleFunc("/add-blog", middleware.UploadFile(addBlog)).Methods("POST")
 	router.HandleFunc("/contact-me", getContact).Methods("GET")
 	router.HandleFunc("/blog-detail/{id}", blogDetail).Methods("GET")
 	router.HandleFunc("/delete-blog/{id}", deleteBlog).Methods("GET")
@@ -132,19 +135,27 @@ func blog(w http.ResponseWriter, r *http.Request) {
 		Data.Username = session.Values["Name"].(string)
 	}
 
-	rows, _ := connection.Conn.Query(context.Background(), "SELECT id, title, image, content, post_date FROM public.tb_blog;")
+	rows, _ := connection.Conn.Query(context.Background(), "SELECT tb_blog.id, title, content, post_date, image, tb_user.name as author FROM tb_blog LEFT JOIN tb_user ON tb_blog.author_id = tb_user.id ORDER BY id DESC")
 
 	var result []Blog
 	for rows.Next() {
 		var each = Blog{}
 
-		var err = rows.Scan(&each.Id, &each.Title, &each.Image, &each.Content, &each.Post_date)
+		var err = rows.Scan(&each.Id, &each.Title, &each.Content, &each.Post_date, &each.Image, &each.Author)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
 
-		each.Author = "Dandi Gans"
+		var store = sessions.NewCookieStore([]byte("SESSION_ID"))
+		session, _ := store.Get(r, "SESSION_ID")
+
+		if session.Values["IsLogin"] != true {
+			each.IsLogin = false
+		} else {
+			each.IsLogin = session.Values["IsLogin"].(bool)
+		}
+
 		each.Format_date = each.Post_date.Format("Jan 21, 2000")
 
 		result = append(result, each)
@@ -218,10 +229,15 @@ func addBlog(w http.ResponseWriter, r *http.Request) {
 
 	title := r.PostForm.Get("title")
 	content := r.PostForm.Get("content")
-	var image string
-	image = "imageByVariable.png"
+	dataContext := r.Context().Value("dataFile")
+	image := dataContext.(string)
 
-	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_blog(title, content, image) VALUES ($1, $2, $3)", title, content, image)
+	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
+	session, _ := store.Get(r, "SESSION_ID")
+
+	author := session.Values["ID"].(int)
+
+	_, err = connection.Conn.Exec(context.Background(), "INSERT INTO tb_blog(title, content, image, author_id) VALUES ($1, $2, $3, $4)", title, content, image, author)
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -229,8 +245,6 @@ func addBlog(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(title)
-	fmt.Println(content)
 	http.Redirect(w, r, "/blog", http.StatusMovedPermanently)
 }
 
@@ -332,6 +346,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	session.Values["IsLogin"] = true
 	session.Values["Name"] = user.Name
+	session.Values["ID"] = user.Id
 	session.Options.MaxAge = 10800
 
 	session.AddFlash("Login succes", "message")

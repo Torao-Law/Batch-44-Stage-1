@@ -23,3 +23,14 @@ DELETE FROM public.tb_user WHERE id=3;
 Query
 QueryRow => 1 baris data sesuai kondisi yang di kirimkan
 Exec => mengeksekusi untuk menambah/update/delete data
+
+
+
+konsep basic relation
+1.one to one -> 1 untuk 1
+2. one to many -> 1 untuk semua
+3. many to many -> semua untuk semua
+
+Key table
+1. Primary key(kunci utama) -> kunci utama dalam suatu table yang identitas setiap data.
+2. Foreign key(kunci cadangan) -> primary key table lain untuk merujuk ke tabel tersebut untuk di hubungkan

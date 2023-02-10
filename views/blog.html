@@ -53,18 +53,18 @@
         <div class="container d-flex justify-content-center">
             <div class="w-50">
                 <h3 class="text-center mt-5">Create Post Blog</h3>
-                <form class="mt-5" action="/add-blog" method="post">
+                <form class="mt-5" action="/add-blog" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" name="title" class="form-control" id="title">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control" id="title">
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Subject</label>
+                        <label for="content" class="form-label">Content</label>
                         <textarea class="form-control" name="content" id="content" style="height: 300px; resize: none;"></textarea>
                     </div>
                     <div class="mb-3">
-                            <label class="form-label" for="upload">Upload Image</label>
-                            <input type="file" class="form-control w-100" id="upload">
+                        <label class="form-label" for="upload">Upload Image</label>
+                        <input type="file" name="upload-image" class="form-control w-100" id="upload">
                     </div>
                     
                     <div class="d-flex justify-content-end">
@@ -80,14 +80,16 @@
                 <div class="card mb-3" style="width: 100%;">
                     <div class="row g-0">
                     <div class="col-md-4 p-3">
-                        <img src="/public/images/blog-img.png" class="img-fluid" alt="image-review">
+                        <img src="http://localhost:5000/uploads/{{$data.Image}}" class="img-fluid" alt="image-review">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
+                            {{if $data.IsLogin}}
                             <div class="d-flex justify-content-end">
                                 <a href="" class="btn btn-secondary text-decoration-none me-3 px-3 py-1" style="font-size: 14px;">EDIT</a>
                                 <a href="/delete-blog/{{$data.Id}}" class="btn btn-danger text-decoration-none px-3 py-1"style="font-size: 14px;">DELETE</a>
                             </div>
+                            {{end}}
                             <h2 class="card-title m-0 p-0">
                                 <a class="text-decoration-none text-black m-0 p-0" href="/blog-detail/{{$data.Id}}" target="_blank">{{$data.Title}}</a>
                             </h2>

@@ -48,6 +48,11 @@
               </div>
             </div>
         </nav>
+        {{if .FlashData}}
+        <div class="alert alert-success" role="alert">
+          {{.FlashData}}
+        </div>
+        {{end}}
 
         <div class="container d-flex mt-5">
             <!-- card -->
